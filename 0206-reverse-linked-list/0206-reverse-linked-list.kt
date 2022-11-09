@@ -8,17 +8,20 @@
  * }
  */
 class Solution {
-    fun reverseList(head: ListNode?): ListNode? {
-    var headNode: ListNode? = head
-    var prevNode: ListNode? = null
-    while (headNode != null) {
-        val next: ListNode? = headNode.next
-        headNode.next = prevNode
-        prevNode = headNode
-        headNode = next
-    }
-    return prevNode
-}
+      fun reverseList(head: ListNode?): ListNode? {
+        if (head == null || head.next == null) return head
 
+        var prev: ListNode? = null
+        var current = head
+
+        while (current != null) {
+            val next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        }
+
+        return prev
+    }
 
 }
