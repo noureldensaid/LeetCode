@@ -9,15 +9,15 @@
  */
 
 class Solution {
-   fun hasCycle(head: ListNode?): Boolean {
-        
-        if (head == null) return false
-        var fast = head; var slow = head
-        
-        while(fast?.next != null && fast.next.next != null){
-            fast = fast.next.next
+fun hasCycle(head: ListNode?): Boolean {
+        var slow = head
+        var fast = head
+        while (slow != null && fast != null) {
             slow = slow?.next
-            if(slow == fast) return true
+            fast = fast?.next?.next
+            if (slow!= null && fast != null && slow == fast) {
+                return true
+            }
         }
         return false
     }
