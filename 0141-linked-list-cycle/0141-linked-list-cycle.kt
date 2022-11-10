@@ -9,17 +9,16 @@
  */
 
 class Solution {
-fun hasCycle(head: ListNode?): Boolean {
-    var slow = head
+  fun hasCycle(head: ListNode?): Boolean {
+    if (head == null) return false
     var fast = head
-    while (fast!=null && fast.next!=null) {
-        slow = slow!!.next
+    var slow = head
+    while (fast != null && fast.next != null) {
         fast = fast.next!!.next
-        if (slow == fast) {
-            return true
-        }
+        slow = slow!!.next
+        if (slow == fast) return true
     }
     return false
-}
+    }
 
 }
