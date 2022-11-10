@@ -18,8 +18,8 @@ fun detectCycle(head: ListNode?): ListNode? {
         slow = slow!!.next
         fast = fast.next!!.next
         if (slow == fast) {
-            while (start != fast) {
-                fast = fast!!.next
+            while (start != slow) {
+                slow = slow!!.next
                 start = start!!.next
             }
             return start
