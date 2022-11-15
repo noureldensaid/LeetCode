@@ -1,13 +1,15 @@
 class Solution {
-fun longestPalindrome(s: String): Int {
-    val count = IntArray(128)
-    for (c in s) count[c.toInt()]++
-    var ans = 0
-    for (v in count) {
-        ans += v / 2 * 2
-        if (ans % 2 == 0 && v % 2 == 1) ans++
+fun longestPalindrome(s: String?): Int {
+    if (s == null || s.isEmpty()) return 0
+    val set = HashSet<Char>()
+    var count = 0
+    for (i in s.indices) {
+        if (s[i] in set) {
+            set.remove(s[i])
+            count++
+        } else set.add(s[i])
     }
-    return ans
-    }
+    return if (set.isNotEmpty()) count * 2 + 1 else count * 2
+}
 
 }
