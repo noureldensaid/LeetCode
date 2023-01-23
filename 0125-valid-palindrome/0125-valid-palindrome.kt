@@ -5,7 +5,9 @@ class Solution {
         while(i < j){
             while (i < j && !s[i].isLetterOrDigit()) i++
             while (i < j && !s[j].isLetterOrDigit()) j--
-            if(s[i++].toLowerCase() != s[j--].toLowerCase()) return                 false
+            if(s[i].toLowerCase() != s[j].toLowerCase()) return false
+            i++
+            j--
         }
         return true
     }
