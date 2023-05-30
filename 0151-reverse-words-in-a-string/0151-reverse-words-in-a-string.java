@@ -3,6 +3,7 @@ class Solution {
         char[] text = s.trim().toCharArray();
         String result = "";
         int i = 0;
+         String sub ="";
          int n = text.length;
         while (i < n) {
             while (i < n && text[i] == ' ') {
@@ -13,10 +14,10 @@ class Solution {
                 j++;
             }
             if (result.isEmpty()) {
-            String sub = String.valueOf(text).substring(i, j);
+              sub = String.valueOf(text).substring(i, j);
                 result = sub;
             } else {
-            String sub = String.valueOf(text).substring(i, j);
+              sub = String.valueOf(text).substring(i, j);
                 result = sub + " " + result;
             }
             i = j+1;
