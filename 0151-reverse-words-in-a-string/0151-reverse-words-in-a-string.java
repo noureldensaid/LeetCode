@@ -1,7 +1,7 @@
 class Solution {
  public String reverseWords(String s) {
     // Split the input string by whitespace into an array of words
-    String[] words = s.trim().split("\\s+");
+    String[] words = s.trim().split(" +");
     
     StringBuilder result = new StringBuilder();
     
