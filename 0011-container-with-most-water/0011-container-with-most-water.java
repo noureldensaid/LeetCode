@@ -8,10 +8,12 @@ class Solution {
 
     // Use two pointers, one starting from the left and the other from the right
     while (left < right) {
-        w = right - left;  // Calculate the width as the distance between the two pointers
-        h = Math.min(height[left], height[right]);  // Calculate the height as the minimum of the two heights
-        area = Math.max(area, h * w);  // Update the maximum area if necessary
-
+        // Calculate the width as the distance between the two pointers
+        w = right - left; 
+        // Calculate the height as the minimum of the two heights
+        h = Math.min(height[left], height[right]); 
+        // Update the maximum area if necessary
+        area = Math.max(area, h * w);  
         // Move the pointer that corresponds to the shorter height
         if (height[left] < height[right]) {
             left++;
