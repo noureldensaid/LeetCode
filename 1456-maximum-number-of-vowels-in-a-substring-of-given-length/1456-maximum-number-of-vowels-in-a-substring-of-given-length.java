@@ -1,32 +1,23 @@
 class Solution {
- public int maxVowels(String s, int k) {
-        HashSet<Character> vowels =
-                new HashSet<>(Arrays.asList('a', 'e', 'i', 'o','u'));
-    char[] arr = s.toLowerCase().toCharArray();
-    int max = 0;
-    int count = 0;
+    public boolean isVowel(char s)  {
 
-    // Count vowels in the first k characters
-    for (int i = 0; i < k; i++) {
-        if (vowels.contains(arr[i])) {
-            count++;
-        }
+return (s == 'a' || s == 'e' || s == 'i' || s == 'o' || s == 'u');
     }
-    max = count;
-
-    // Sliding window approach to count vowels in subsequent substrings
-    for (int i = k; i < arr.length; i++) {
-        if (vowels.contains(arr[i - k])) {
-            count--;
+    public int maxVowels(String a, int k) {
+        int left = 0, right = 0, res = 0, ans = 0;
+        char[] str = a.toCharArray();
+        while(right < str.length && right < k) {
+            char s = str[right];
+            if(isVowel(s))  res++;
+            right++;
         }
-        if (vowels.contains(arr[i])) {
-            count++;
+        ans = Math.max(ans, res);
+        while(right < str.length) {
+            char r = str[right++], l = str[left++];
+            if(isVowel(r))  res++;
+            if(isVowel(l))  res--;
+            ans = Math.max(ans, res);
         }
-        max = Math.max(max, count);
+        return ans;
     }
-
-    return max;
-}
-
-
 }
