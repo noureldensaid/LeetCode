@@ -1,7 +1,8 @@
 class Solution {
  public int maxVowels(String s, int k) {
-    Set<Character> vowels = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
-    char[] arr = s.toCharArray();
+        HashSet<Character> vowels =
+                new HashSet<>(Arrays.asList('a', 'e', 'i', 'o','u'));
+    char[] arr = s.toLowerCase().toCharArray();
     int max = 0;
     int count = 0;
 
