@@ -14,7 +14,7 @@ public int[] minOperations(String boxes) {
 
     // Calculate the number of operations to move balls to the right of each box
     operations = 0; count = 0;
-     for (int i = n-1 ; i >= 0; i--) {
+     for (int i = n-1 ; i > -1; i--) {
        answer[i] += operations;
         count += boxes.charAt(i) - '0';
         operations += count;
