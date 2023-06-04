@@ -1,5 +1,5 @@
 class Solution {
-public int[] minOperations(String boxes) {
+    public int[] minOperations(String boxes) {
     int n = boxes.length();
     int[] answer = new int[n];
 
@@ -25,4 +25,4 @@ public int[] minOperations(String boxes) {
 }
 }
 
- 
+
