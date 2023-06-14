@@ -1,16 +1,32 @@
 class Solution {
- fun frequencySort(nums: IntArray): IntArray {
-    // Create a mutable map to store the frequency of each number
-    val frequencyMap = mutableMapOf<Int, Int>().withDefault { 0 }
-
-    // Count the frequency of each number in the input array
-    for (num in nums) {
-        frequencyMap[num] = frequencyMap.getValue(num) + 1
+  public int[] frequencySort(int[] nums) {
+    // Step 1: Create a frequency map
+    Map<Integer, Integer> frequencyMap = new HashMap<>();
+    for (int num : nums) {
+        frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
     }
 
-    // Sort the numbers based on frequency (ascending) and value (descending)
-    return nums.sortedWith(compareBy({ frequencyMap.getValue(it) }, { -it }))
-        .toIntArray()
+    // Step 2: Sort the array based on frequency and value
+    Integer[] arrayWrapper = new Integer[nums.length];
+    for (int i = 0; i < nums.length; i++) {
+        arrayWrapper[i] = nums[i];
+    }
+    Arrays.sort(arrayWrapper, (a, b) -> {
+        int freqA = frequencyMap.get(a);
+        int freqB = frequencyMap.get(b);
+        if (freqA != freqB) {
+            return freqA - freqB; // Sort by frequency
+        }
+        return b - a; // Sort by value in descending order if frequency is equal
+    });
+
+    // Convert the sorted array back to int[]
+    int[] sortedArray = new int[nums.length];
+    for (int i = 0; i < nums.length; i++) {
+        sortedArray[i] = arrayWrapper[i];
+    }
+
+    return sortedArray;
 }
 
 }
