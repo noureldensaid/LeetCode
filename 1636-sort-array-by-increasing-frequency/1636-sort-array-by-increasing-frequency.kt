@@ -6,7 +6,9 @@ class Solution {
         frequencyMap[num] = frequencyMap.getValue(num) + 1
     }
 
-    return nums.sortedWith(compareBy({ frequencyMap.getValue(it) }, { -it })).toIntArray()
+    // negative sign to sort in descinding order
+    return nums.sortedWith(compareBy({ frequencyMap.getValue(it) }, { -it}))
+         .toIntArray()
 }
 
 }
