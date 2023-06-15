@@ -1,6 +1,6 @@
 class Solution {
 fun fib(n: Int): Int {
-    val fib = HashMap<Int, Int>()
+    val fib = java.util.HashMap<Int, Int>()
     fib[0] = 0
     fib[1] = 1
     for (i in 2..n) {
