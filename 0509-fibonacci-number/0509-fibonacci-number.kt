@@ -1,11 +1,11 @@
 class Solution {
 fun fib(n: Int): Int {
-    val fib = mutableListOf<Int>()
-    fib.add(0)
-    fib.add(1)
+    val fib = HashMap<Int, Int>()
+    fib[0] = 0
+    fib[1] = 1
     for (i in 2..n) {
-        fib.add(i, fib[i - 1] + fib[i - 2])
+        fib[i] = fib[i - 1]!! + fib[i - 2]!!
     }
-    return fib[n] 
+    return fib[n] ?: 0
 }
 }
