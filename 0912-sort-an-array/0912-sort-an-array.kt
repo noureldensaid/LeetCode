@@ -1,56 +1,57 @@
 class Solution {
     fun sortArray(nums: IntArray): IntArray {
-            // Base case: if the array has 0 or 1 element, it is already sorted
-    if (nums.size <= 1) {
+        mergeSort(nums, 0, nums.size - 1)
         return nums
     }
 
-    // Divide the array into two halves
-    val mid = nums.size / 2
-    val left = nums.sliceArray(0 until mid)
-    val right = nums.sliceArray(mid until nums.size)
-
-    // Recursively sort the two halves
-    val sortedLeft = sortArray(left)
-    val sortedRight = sortArray(right)
-
-    // Merge the sorted halves
-    return merge(sortedLeft, sortedRight)
-}
-
-fun merge(left: IntArray, right: IntArray): IntArray {
-    val merged = IntArray(left.size + right.size)
-    var leftIndex = 0
-    var rightIndex = 0
-    var mergedIndex = 0
-
-    // Compare elements from the left and right arrays and merge them in ascending order
-    while (leftIndex < left.size && rightIndex < right.size) {
-        if (left[leftIndex] <= right[rightIndex]) {
-            merged[mergedIndex] = left[leftIndex]
-            leftIndex++
-        } else {
-            merged[mergedIndex] = right[rightIndex]
-            rightIndex++
+    private fun mergeSort(nums: IntArray, left: Int, right: Int) {
+        if (left < right) {
+            val mid = left + (right - left) / 2
+            mergeSort(nums, left, mid)
+            mergeSort(nums, mid + 1, right)
+            merge(nums, left, mid, right)
         }
-        mergedIndex++
     }
 
-    // Copy the remaining elements from the left array, if any
-    while (leftIndex < left.size) {
-        merged[mergedIndex] = left[leftIndex]
-        leftIndex++
-        mergedIndex++
-    }
+    private fun merge(nums: IntArray, left: Int, mid: Int, right: Int) {
+        val leftSize = mid - left + 1
+        val rightSize = right - mid
 
-    // Copy the remaining elements from the right array, if any
-    while (rightIndex < right.size) {
-        merged[mergedIndex] = right[rightIndex]
-        rightIndex++
-        mergedIndex++
-    }
+        val leftArray = IntArray(leftSize)
+        val rightArray = IntArray(rightSize)
 
-    return merged
+        for (i in 0 until leftSize) {
+            leftArray[i] = nums[left + i]
+        }
+        for (j in 0 until rightSize) {
+            rightArray[j] = nums[mid + j + 1]
+        }
 
+        var i = 0
+        var j = 0
+        var k = left
+
+        while (i < leftSize && j < rightSize) {
+            if (leftArray[i] <= rightArray[j]) {
+                nums[k] = leftArray[i]
+                i++
+            } else {
+                nums[k] = rightArray[j]
+                j++
+            }
+            k++
+        }
+
+        while (i < leftSize) {
+            nums[k] = leftArray[i]
+            i++
+            k++
+        }
+
+        while (j < rightSize) {
+            nums[k] = rightArray[j]
+            j++
+            k++
+        }
     }
 }
