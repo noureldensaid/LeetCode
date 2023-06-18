@@ -1,15 +1,14 @@
 class Solution {
-fun sortPeople(names: Array<String>, heights: IntArray): Array<String> {
+ fun sortPeople(names: Array<String>, heights: IntArray): Array<String> {
     val hashmap = hashMapOf<Int, String>()
-    val sortedHeights = heights.sortedDescending()
     for (i in names.indices) {
-        hashmap.put(heights[i], names[i])
+        hashmap[heights[i]] = names[i]
     }
-    val result = mutableListOf<String>()
-    for (item in sortedHeights) {
-        result.add(hashmap.getOrDefault(item,"null"))
+    val sortedHeights = heights.sortedDescending()
+    val result = Array<String>(names.size) { "null" }
+    for (i in sortedHeights.indices) {
+        result[i] = hashmap[sortedHeights[i]]!!
     }
-    return result.toTypedArray()
+    return result
 }
-
 }
