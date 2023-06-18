@@ -1,19 +1,29 @@
 class Solution {
-    fun sortColors(nums: IntArray): Unit {
-        var left = -1
-        var right = nums.size
+    fun sortColors(nums: IntArray) {
+        var left = 0  // Boundary for the sorted red (0) elements
+        var right = nums.size - 1  // Boundary for the sorted blue (2) elements
         var index = 0
-        while (index < right) {
-            when(nums[index]) {
-                0 -> { swap(nums, index++, ++left) }
-                1 -> { index++ }
-                2 -> { swap(nums, index, --right) }
+        
+        while (index <= right) {
+            when (nums[index]) {
+                0 -> {
+                    swap(nums, index, left)
+                    index++
+                    left++
+                }
+                1 -> {
+                    index++
+                }
+                2 -> {
+                    swap(nums, index, right)
+                    right--
+                }
             }
         }
     }
 
-    fun swap(nums: IntArray, i: Int, j: Int) {
-        var temp = nums[i]
+    private fun swap(nums: IntArray, i: Int, j: Int) {
+        val temp = nums[i]
         nums[i] = nums[j]
         nums[j] = temp
     }
