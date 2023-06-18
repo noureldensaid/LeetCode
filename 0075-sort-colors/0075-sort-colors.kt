@@ -1,7 +1,7 @@
 class Solution {
     fun sortColors(nums: IntArray) {
-        var left = 0  // Boundary for the sorted red (0) elements
-        var right = nums.size - 1  // Boundary for the sorted blue (2) elements
+        var left = 0  
+        var right = nums.size - 1
         var index = 0
         
         while (index <= right) {
