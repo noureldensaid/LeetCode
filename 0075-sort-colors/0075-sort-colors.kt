@@ -23,8 +23,9 @@ class Solution {
     }
 
     private fun swap(nums: IntArray, i: Int, j: Int) {
-        val temp = nums[i]
+        if(nums[i]!=nums[j])
+       { val temp = nums[i]
         nums[i] = nums[j]
-        nums[j] = temp
+        nums[j] = temp}
     }
 }
