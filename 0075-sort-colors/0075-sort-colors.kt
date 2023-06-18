@@ -1,13 +1,13 @@
 class Solution {
     fun sortColors(nums: IntArray): Unit {
-        var lt = -1
-        var gt = nums.size
+        var left = -1
+        var right = nums.size
         var index = 0
-        while (index < gt) {
+        while (index < right) {
             when(nums[index]) {
-                0 -> { swap(nums, index++, ++lt) }
+                0 -> { swap(nums, index++, ++left) }
                 1 -> { index++ }
-                2 -> { swap(nums, index, --gt) }
+                2 -> { swap(nums, index, --right) }
             }
         }
     }
