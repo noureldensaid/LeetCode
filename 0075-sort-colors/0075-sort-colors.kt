@@ -1,29 +1,19 @@
 class Solution {
-    fun sortColors(nums: IntArray) {
-        var low = 0
-        var mid = 0
-        var high = nums.size - 1
-
-        while (mid <= high) {
-            when (nums[mid]) {
-                0 -> {
-                    swap(nums, low, mid)
-                    low++
-                    mid++
-                }
-                1 -> {
-                    mid++
-                }
-                2 -> {
-                    swap(nums, mid, high)
-                    high--
-                }
+    fun sortColors(nums: IntArray): Unit {
+        var lt = -1
+        var gt = nums.size
+        var index = 0
+        while (index < gt) {
+            when(nums[index]) {
+                0 -> { swap(nums, index++, ++lt) }
+                1 -> { index++ }
+                2 -> { swap(nums, index, --gt) }
             }
         }
     }
 
-    private fun swap(nums: IntArray, i: Int, j: Int) {
-        val temp = nums[i]
+    fun swap(nums: IntArray, i: Int, j: Int) {
+        var temp = nums[i]
         nums[i] = nums[j]
         nums[j] = temp
     }
