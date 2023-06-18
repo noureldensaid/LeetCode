@@ -1,56 +1,56 @@
 class Solution {
     fun sortArray(nums: IntArray): IntArray {
-            // Base case: if the array has 0 or 1 element, it is already sorted
-    if (nums.size <= 1) {
+        val tempArray = IntArray(nums.size)
+        mergeSort(nums, 0, nums.size - 1, tempArray)
         return nums
     }
 
-    // Divide the array into two halves
-    val mid = nums.size / 2
-    val left = nums.sliceArray(0 until mid)
-    val right = nums.sliceArray(mid until nums.size)
-
-    // Recursively sort the two halves
-    val sortedLeft = sortArray(left)
-    val sortedRight = sortArray(right)
-
-    // Merge the sorted halves
-    return merge(sortedLeft, sortedRight)
-}
-
-fun merge(left: IntArray, right: IntArray): IntArray {
-    val merged = IntArray(left.size + right.size)
-    var leftIndex = 0
-    var rightIndex = 0
-    var mergedIndex = 0
-
-    // Compare elements from the left and right arrays and merge them in ascending order
-    while (leftIndex < left.size && rightIndex < right.size) {
-        if (left[leftIndex] <= right[rightIndex]) {
-            merged[mergedIndex] = left[leftIndex]
-            leftIndex++
-        } else {
-            merged[mergedIndex] = right[rightIndex]
-            rightIndex++
+    private fun mergeSort(arr: IntArray, left: Int, right: Int, tempArr: IntArray) {
+        if (left >= right) {
+            return
         }
-        mergedIndex++
+        val mid = (left + right) / 2
+        mergeSort(arr, left, mid, tempArr)
+        mergeSort(arr, mid + 1, right, tempArr)
+        merge(arr, left, mid, right, tempArr)
     }
 
-    // Copy the remaining elements from the left array, if any
-    while (leftIndex < left.size) {
-        merged[mergedIndex] = left[leftIndex]
-        leftIndex++
-        mergedIndex++
-    }
+    private fun merge(arr: IntArray, left: Int, mid: Int, right: Int, tempArr: IntArray) {
+        val start1 = left
+        val start2 = mid + 1
+        val size1 = mid - left + 1
+        val size2 = right - mid
 
-    // Copy the remaining elements from the right array, if any
-    while (rightIndex < right.size) {
-        merged[mergedIndex] = right[rightIndex]
-        rightIndex++
-        mergedIndex++
-    }
+        for (i in 0 until size1) {
+            tempArr[start1 + i] = arr[start1 + i]
+        }
+        for (i in 0 until size2) {
+            tempArr[start2 + i] = arr[start2 + i]
+        }
 
-    return merged
+        var i = 0
+        var j = 0
+        var k = left
+        while (i < size1 && j < size2) {
+            if (tempArr[start1 + i] <= tempArr[start2 + j]) {
+                arr[k] = tempArr[start1 + i]
+                i += 1
+            } else {
+                arr[k] = tempArr[start2 + j]
+                j += 1
+            }
+            k += 1
+        }
 
+        while (i < size1) {
+            arr[k] = tempArr[start1 + i]
+            i += 1
+            k += 1
+        }
+        while (j < size2) {
+            arr[k] = tempArr[start2 + j]
+            j += 1
+            k += 1
+        }
     }
 }
