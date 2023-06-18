@@ -11,12 +11,12 @@ class Solution {
                     index++
                     left++
                 }
-                1 -> {
-                    index++
-                }
                 2 -> {
                     swap(nums, index, right)
                     right--
+                }
+                else -> {
+                    index++
                 }
             }
         }
